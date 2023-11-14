@@ -1,11 +1,9 @@
 ---
-import { Image } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 import dayjs from 'dayjs';
-import bannerImg from '../assets/banner.jpg';
 import Footer from '../components/Footer.astro';
 
 const posts = (await getCollection('post')).sort((a, b) => {
@@ -24,7 +22,7 @@ const posts = (await getCollection('post')).sort((a, b) => {
   <body>
     <Header />
     <section class="h-96 relative p-10">
-      <Image class={'absolute top-0 left-0 w-full h-full object-cover z-0'} src={bannerImg} alt="banner" />
+      <img class={'absolute top-0 left-0 w-full h-full object-cover z-0'} src={'https://cdn.jaylin.wang/banner.jpg'} alt="banner" />
       <div class="z-10 relative text-center h-full flex items-center justify-center">
         <div class="max-w-lg">
           <div
