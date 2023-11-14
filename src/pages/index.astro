@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import dayjs from 'dayjs';
+import bannerImg from '../assets/banner.jpg';
+import Footer from '../components/Footer.astro';
+
+const posts = (await getCollection('post')).sort((a, b) => {
+  if (a.data?.date && b.data?.date) {
+    return dayjs(a.data.date).isBefore(b.data.date) ? 1 : -1;
+  }
+  return 0;
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <section class="h-96 relative p-10">
+      <Image class={'absolute top-0 left-0 w-full h-full object-cover z-0'} src={bannerImg} alt="banner" />
+      <div class="z-10 relative text-center h-full flex items-center justify-center">
+        <div class="max-w-lg">
+          <div
+            class="w-20 h-20 mb-6 inline-flex justify-center items-center text-xl text-white bg-gradient-to-tr from-indigo-500 to-sky-500 rounded-sm"
+          >
+            视野
+          </div>
+          <p class="text-white text-xl">
+            这里是继林的技术周刊，记录每周遇到的有趣的技术、工具或行业动态，希望能够和大家分享
+          </p>
+        </div>
+      </div>
+    </section>
+    <main class="py-20">
+      <div class="m-auto max-w-screen-lg">
+        {
+          posts.map((post) => (
+            <a href={`/post/${post.slug}`}>
+              <section class="flex mb-10 gap-4">
+                <div class="w-80">
+                  <img class="rounded-lg object-fit" src={post.data.image} />
+                </div>
+                <div class="flex-1">
+                  <p class="text-gray-500 text-sm mb-4">{dayjs(post.data.date).format('YYYY.MM.DD')}</p>
+                  <h4 class="text-xl mb-4">{post.data.title}</h4>
+                  <p class="text-gray-700 leading-relaxed">{post.data.description}</p>
+                </div>
+              </section>
+            </a>
+          ))
+        }
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

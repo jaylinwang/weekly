@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon';
+---
+
+<header class="h-24 px-6">
+  <div class="flex m-auto max-w-screen-lg h-full items-center">
+    <div
+      class="w-10 h-10 inline-flex justify-center items-center text-sm text-white bg-gradient-to-tr from-indigo-500 to-sky-500"
+    >
+      视野
+    </div>
+    <nav class="flex-1 px-10">
+      <ul class="inline-flex gap-4 text-gray-800">
+        <li class="cursor-pointer hover:text-gray-600">
+          <a href="/" rel="noopener noreferrer">首页</a>
+        </li>
+        <li class="cursor-pointer hover:text-gray-600">
+          <a href="https://jaylin.wang" target="_blank" rel="noopener noreferrer">博客</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="w-10 flex justify-end">
+      <a
+        class="text-muted rounded-lg text-sm p-2.5 inline-flex items-center"
+        aria-label="RSS Feed"
+        target="_blank"
+        href={'/rss.xml'}
+      >
+        <Icon name="tabler:rss" class="w-5 h-5" />
+      </a>
+    </div>
+  </div>
+</header>
