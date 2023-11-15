@@ -17,15 +17,15 @@ const { title, description, date, image } = Astro.props;
 
   <body>
     <Header />
-    <main class="p-10">
+    <main class="lg:p-10">
       <div class="text-center">
-        <p class="text-gray-500 text-sm mb-4">{dayjs(date).format('YYYY.MM.DD')}</p>
-        <h4 class="text-xl mb-4">{title}</h4>
+        <p class="text-gray-500 text-sm  mb-2 lg:mb-4">{dayjs(date).format('YYYY.MM.DD')}</p>
+        <h4 class="text-xl mb-2 lg:mb-4">{title}</h4>
       </div>
-      <div class="m-auto max-w-screen-lg mb-10">
+      <div class="m-auto mb-4 lg:max-w-screen-lg lg:mb-10">
         <img class="object-fit" src={image} />
       </div>
-      <div class="m-auto max-w-screen-lg px-20">
+      <div class="m-auto px-4 lg:max-w-screen-lg lg:px-20">
         <article class="max-w-none prose prose-lg">
           <slot />
         </article>
